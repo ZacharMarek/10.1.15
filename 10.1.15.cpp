@@ -177,6 +177,7 @@ void gsi_adjust_contrast(GSI *mat, float br)
 	int max = 255;
 	int min = 0;
 	
+	int a=2;
 	
 	for(i=0;i<mat->height;i++)
 	{
@@ -184,17 +185,17 @@ void gsi_adjust_contrast(GSI *mat, float br)
 		{
 			if(br>0)
 			{
-			if(PIX(mat, i, j)+br > max)
+			if(a*PIX(mat, i, j)+br > max)
 				PIX(mat, i, j) = max;
 			else
-				PIX(mat, i, j) += br;
+				PIX(mat, i, j) = a*PIX(mat, i, j)+br;
 			}	
 			else if(br<0)
 			{
-			if(PIX(mat, i, j)+br < min)
+			if(a*PIX(mat, i, j)+br < min)
 				PIX(mat, i, j) = min;
 			else
-				PIX(mat, i, j) += br;
+				PIX(mat, i, j) = a*PIX(mat, i, j)+br;
 			}
 			else
 					PIX(mat, i, j);
@@ -203,6 +204,7 @@ void gsi_adjust_contrast(GSI *mat, float br)
 		}
 	}
 }
+
 
 //aby som ju aj ked vlastne nemusim videl
 void mat_print(GSI *mat)
